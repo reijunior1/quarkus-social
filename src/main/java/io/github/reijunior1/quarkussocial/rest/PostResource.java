@@ -11,11 +11,13 @@ public class PostResource {
 
     @POST
     public Response savePost() {
+
         return Response.status(Response.Status.CREATED).build();
     }
 
     @GET
     public Response ListPosts() {
+
         return Response.ok().build();
     }
 }
