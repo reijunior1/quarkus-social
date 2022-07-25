@@ -14,7 +14,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-    <quarkus.platform.version>2.3.0.Final</quarkus.platform.version>
+    <quarkus.platform.version>2.10.3.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
   <dependencyManagement>
@@ -36,6 +36,7 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-arc</artifactId>
+      <version>2.9.2.Final</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -98,7 +99,6 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <parameters>${maven.compiler.parameters}</parameters>
         </configuration>
       </plugin>
       <plugin>
@@ -122,22 +122,31 @@
       <build>
         <plugins>
           <plugin>
-            <artifactId>maven-failsafe-plugin</artifactId>
-            <version>${surefire-plugin.version}</version>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-maven-plugin</artifactId>
+            <extensions>true</extensions>
             <executions>
               <execution>
                 <goals>
-                  <goal>integration-test</goal>
-                  <goal>verify</goal>
+                  <goal>build</goal>
+                  <goal>generate-code</goal>
+                  <goal>generate-code-tests</goal>
                 </goals>
-                <configuration>
-                  <systemPropertyVariables>
-                    <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
-                    <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                  </systemPropertyVariables>
-                </configuration>
               </execution>
             </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+            </configuration>
+          </plugin>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <systemPropertyVariables>
+                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+              </systemPropertyVariables>
+            </configuration>
           </plugin>
         </plugins>
       </build>
