@@ -16,6 +16,6 @@ public class Follower {
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
-    @JoinColumn(name = "followers_id")
+    @JoinColumn(name = "follower_id")
     private User follower;
 }
