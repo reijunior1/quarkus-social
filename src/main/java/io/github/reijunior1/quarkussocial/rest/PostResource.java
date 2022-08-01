@@ -7,7 +7,6 @@ import io.github.reijunior1.quarkussocial.domain.repository.PostRepository;
 import io.github.reijunior1.quarkussocial.domain.repository.UserRepository;
 import io.github.reijunior1.quarkussocial.rest.dto.CreatePostRequest;
 import io.github.reijunior1.quarkussocial.rest.dto.PostResponse;
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Sort;
 
 import javax.inject.Inject;
